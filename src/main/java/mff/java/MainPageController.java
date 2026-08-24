@@ -350,6 +350,7 @@ public class MainPageController implements Initializable {
         taskList.setItems(tasks);
         setTaskListOnChangeHandler();
 
+        UiUtils.setItemTextRepresentation(taskList, task -> task + " (" + task.getStatus() + ")");
         UiUtils.setPositiveIntegerContent(newTaskEstimation);
         UiUtils.setPositiveIntegerContent(taskDetailEstimation);
         UiUtils.setItemTextRepresentation(taskDetailDependencies,
