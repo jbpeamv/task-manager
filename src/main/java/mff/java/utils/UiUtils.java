@@ -1,6 +1,9 @@
 package mff.java.utils;
 
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -74,6 +77,21 @@ public class UiUtils {
      */
     public static Optional<ButtonType> showErrorDialog(String title, String headerText) {
         return showDialog(Alert.AlertType.ERROR, title, headerText, "Click OK to close this dialog");
+    }
+
+    /**
+     * make pressing Tab in the given TextArea move focus to another control instead of inserting a tab character
+     *
+     * @param textArea given TextArea control
+     * @param nextFocusTarget control to focus when Tab is pressed
+     */
+    public static void setTabMovesFocus(TextArea textArea, Node nextFocusTarget) {
+        textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.TAB) {
+                event.consume();
+                nextFocusTarget.requestFocus();
+            }
+        });
     }
 
     /**

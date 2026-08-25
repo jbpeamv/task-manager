@@ -353,6 +353,7 @@ public class MainPageController implements Initializable {
         UiUtils.setItemTextRepresentation(taskList, task -> task + " (" + task.getStatus() + ")");
         UiUtils.setPositiveIntegerContent(newTaskEstimation);
         UiUtils.setPositiveIntegerContent(taskDetailEstimation);
+        UiUtils.setTabMovesFocus(newTaskDescription, newTaskEstimation);
         UiUtils.setItemTextRepresentation(taskDetailDependencies,
                 taskDependency -> getDependsOnTask(taskDependency).toString());
     }
