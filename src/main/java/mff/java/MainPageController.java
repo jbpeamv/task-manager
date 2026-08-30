@@ -213,6 +213,11 @@ public class MainPageController implements Initializable {
      */
     @FXML
     private void cancelTaskEditing() {
+        var selectedTask = UiUtils.getSelectedFromListView(taskList);
+        if (selectedTask != null) {
+            showTaskDetails(selectedTask);
+        }
+
         canEditTaskDetail(false);
         setEditButtonsVisibility(false);
     }
@@ -224,7 +229,8 @@ public class MainPageController implements Initializable {
     private void updateTask() {
         var taskToUpdate = UiUtils.getSelectedFromListView(taskList);
 
-        cancelTaskEditing();
+        canEditTaskDetail(false);
+        setEditButtonsVisibility(false);
 
         int estimation = IntegerUtils.tryGetInt(taskDetailEstimation.getText(), taskToUpdate.getEstimation());
 
